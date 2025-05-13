@@ -1,0 +1,92 @@
+
+
+import java.util.*;
+public class task16 {
+
+    // create Node class
+    public static class Node{
+        int data ;
+        Node next ;
+        Node(int data){
+            this.data = data;
+        }
+    }
+
+    // mergelist
+    public static Node mergeList(Node head1 , Node head2){
+        Node temp1 = head1 ;
+        Node temp2 = head2 ;
+
+        Node head = new Node(100);
+        Node temp = head ;
+
+        while(temp1 != null && temp2 != null){
+            if(temp1.data < temp2.data){
+                Node a = new Node(temp1.data);
+                temp.next = a ;
+                temp = temp.next ;
+                temp1 = temp1.next;
+            }else{
+                Node a = new Node(temp2.data);
+                temp.next = a ;
+                temp = temp.next ;
+                temp2 = temp2.next ;
+            }
+        }
+        if(temp1 == null){
+            temp.next = temp2 ;
+        }else{
+            temp.next = temp1 ;
+        }
+        return head.next ;
+    }
+
+    // display()....
+    public static void display(Node head){
+        Node temp = head ;
+        while(temp != null){
+            System.out.print(temp.data+" ");
+            temp = temp.next ;
+        }
+    }
+
+
+    public static void main(String[] args) {
+        
+        // linkedlist 1 :
+        // create linkedlist(1)...
+        // assign data
+        Node a1 = new Node(1);
+        Node a2 = new Node(3);
+        Node a3 = new Node(5);
+        Node a4 = new Node(7);
+        // link nodes
+        a1.next = a2 ;
+        a2.next = a3 ;
+        a3.next = a4 ;
+        
+        // create linkedlist(2)...
+        // assign data...
+        Node b1 = new Node(2);
+        Node b2 = new Node(4);
+        Node b3 = new Node(6);
+        Node b4 = new Node(8);
+        // link nodes
+        b1.next = b2 ;
+        b2.next = b3 ;
+        b3.next = b4 ;
+
+        // display()...
+        System.out.println("linkedlist 1 : ");
+        display(a1);
+        System.out.println("\n"+"linkedlist 2 :");
+        display(b1);
+
+        // merge list
+        System.out.println("\n"+"merged list is :");
+        Node ans = mergeList(a1, b1);
+        display(ans);
+         
+
+    }
+}
